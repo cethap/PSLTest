@@ -61,16 +61,17 @@ var setNewIdentification = function(){
   testData.identification = id.charCodeAt(0)+""+id.charCodeAt(1)+""+id.charCodeAt(2);
 };
 
-beforeEach(function(){
-    PO = new addDoctorPO();
-    PO.get();
-    testData.identificationType = testData.identificationType[
-      Math.floor(Math.random() * testData.identificationType.length)
-    ];
-});
 
 describe('Add doctor', function() {
   
+  beforeEach(function(){
+      PO = new addDoctorPO();
+      PO.get();
+      testData.identificationType = testData.identificationType[
+        Math.floor(Math.random() * testData.identificationType.length)
+      ];
+  });
+
   it('Add doctor with correctly data', function() {
 
     setNewIdentification();

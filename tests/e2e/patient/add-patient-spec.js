@@ -66,18 +66,19 @@ var setNewIdentification = function(){
   testData.identification = id.charCodeAt(0)+""+id.charCodeAt(1)+""+id.charCodeAt(2);
 };
 
-beforeEach(function(){
-    PO = new addPatientPO();
-    PO.get();
-    testData.identificationType = testData.identificationType[
-      Math.floor(Math.random() * testData.identificationType.length)
-    ];
-    testData.prepaid = testData.prepaidChoose[
-      Math.floor(Math.random() * testData.prepaidChoose.length)
-    ];    
-});
 
 describe('Add patient', function() {
+  
+  beforeEach(function(){
+      PO = new addPatientPO();
+      PO.get();
+      testData.identificationType = testData.identificationType[
+        Math.floor(Math.random() * testData.identificationType.length)
+      ];
+      testData.prepaid = testData.prepaidChoose[
+        Math.floor(Math.random() * testData.prepaidChoose.length)
+      ];    
+  });
   
   it('Add patient with correctly data', function() {
 

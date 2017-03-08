@@ -22,6 +22,7 @@ exports.config = {
     doctor: 'tests/e2e/doctor/*-spec.js',
     patient: 'tests/e2e/patient/*-spec.js',
     room: 'tests/e2e/room/*-spec.js',
+    appointment_scheduling: 'tests/e2e/appointmentScheduling/*-spec.js',
     rest: 'tests/e2e/weather/*-spec.js'
   },
 

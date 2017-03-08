@@ -16,6 +16,14 @@ Run webdriver manager:
 
     webdriver-manager start
 
+Install sample dependencies:
+
+    npm install    
+
 Once initialized the webdriver manager you can run this sample:    
 
     npm test
+
+After execution test you can view the report in:
+
+    /path/to/sample/target/screenshots/htmlReport.html

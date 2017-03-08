@@ -28,3 +28,6 @@ No se pudo guardar debido a:
 *El campo 'Número de habitación' ya esta registrado. 
 
 ----------------------------------------------------------------------
+
+*El campo 'Documento de identidad' no se encuentra entre nuestros doctores. 
+*El campo 'Documento de identidad' no se encuentra entre nuestros pacientes registrados. 

@@ -5,7 +5,7 @@
   Feature: Admin rooms info
     In order to attend a user at a medical appointment correctly
   
-    Scenario: Add room with correctly data
+    Scenario: Add simple room with correctly data
       Given the URL http://automatizacion.herokuapp.com/{name}/addRoom
         And replacement {name} with a name and last name combination
       When I type in the name field without alphabetical characters
@@ -15,7 +15,57 @@
        And I press the save button
      Then should no check DirecTV
        should show the next message "Datos guardados correctamente."
-       And should show the text referenced in fields typed in previous form             
+       And should show the text referenced in fields typed in previous form    
+
+    Scenario: Add simple room with name already saved
+      Given the URL http://automatizacion.herokuapp.com/{name}/addRoom
+        And replacement {name} with a name and last name combination
+      When I type in the name field without alphabetical characters and with name already saved
+       And I choose simple room
+       And I choose double bed
+       And I intent choose DirecTV
+       And I press the save button
+     Then should no check DirecTV
+       should show the next message "Datos guardados correctamente."
+       And should show the text referenced in fields typed in previous form           
+
+    Scenario: Add luxury with correctly data
+      Given the URL http://automatizacion.herokuapp.com/{name}/addRoom
+        And replacement {name} with a name and last name combination
+      When I type in the name field without alphabetical characters
+       And I choose luxury room
+       And I choose double bed
+       And I intent choose DirecTV
+       And I press the save button
+     Then should no double bed
+       should show the next message "Datos guardados correctamente."
+       And should show the text referenced in fields typed in previous form    
+
+    Scenario: Add luxury room with name already saved
+      Given the URL http://automatizacion.herokuapp.com/{name}/addRoom
+        And replacement {name} with a name and last name combination
+      When I type in the name field without alphabetical characters and with name already saved
+       And I choose luxury room
+       And I choose double bed
+       And I intent choose DirecTV
+       And I press the save button
+     Then should no double bed
+       should show the next message "Datos guardados correctamente."
+       And should show the text referenced in fields typed in previous form 
+
+
+    Scenario: Add luxury room with force alphabetical characters
+      Given the URL http://automatizacion.herokuapp.com/{name}/addRoom
+        And replacement {name} with a name and last name combination
+      When I type in the name field with force alphabetical characters and with name already saved
+       And I choose luxury room
+       And I choose double bed
+       And I intent choose DirecTV
+       And I press the save button
+     Then should no double bed
+       should show the next message "Datos guardados correctamente."
+       And should show the text referenced in fields typed in previous form        
+
 */
 
 var addRoomPO = require("../PO/add-room-PO").addRoomPO;
@@ -31,12 +81,13 @@ var setNewNumber = function(){
   testData.number = id.charCodeAt(0)+""+id.charCodeAt(1)+""+id.charCodeAt(2);
 };
 
-beforeEach(function(){
-    PO = new addRoomPO();
-    PO.get();   
-});
 
 describe('Add room', function() {
+
+    beforeEach(function(){
+        PO = new addRoomPO();
+        PO.get();   
+    });
   
     it('Add simple room with correctly data', function() {
 
@@ -51,18 +102,18 @@ describe('Add room', function() {
         browser.driver.sleep(1000);
         var specMessage = PO.getContentMessage();
         var specId = PO.getRoomId();  
+        expect(specId.then(function(rs){return isNaN(rs-1)})).toBe(false);
         expect(specMessage).toEqual("Datos guardados correctamente.");
         expect(specId).toEqual(testData.number);
 
     });
 
-    it('Add simple room with id already saved', function() {
+    it('Add simple room with name already saved', function() {
 
         testData.type = testData.typeChoose[0];  
 
         PO.waitForNameInput();
         PO.setRoomInfo(testData);
-        expect(PO.getRoomLuxuryInput().isSelected()).toBe(false);
         PO.sendForm();
         PO.waitTitleMessage();
         browser.driver.sleep(1000);
@@ -85,12 +136,13 @@ describe('Add room', function() {
         browser.driver.sleep(1000);
         var specMessage = PO.getContentMessage();
         var specId = PO.getRoomId();  
+        expect(specId.then(function(rs){return isNaN(rs-1)})).toBe(false);
         expect(specMessage).toEqual("Datos guardados correctamente.");
         expect(specId).toEqual(testData.number);
 
     });
 
-    it('Add luxury room with id already saved', function() {
+    it('Add luxury room with name already saved', function() {
 
         testData.type = testData.typeChoose[1];  
 
@@ -106,24 +158,19 @@ describe('Add room', function() {
 
     });
 
-    it('Add luxury room with id with force alphabetical characters', function() {
+    it('Add luxury room with name with force alphabetical characters', function() {
 
         testData.type = testData.typeChoose[1];  
         browser.executeScript('document.querySelector(\'[name="name"]\').value="adasdad"');
         PO.waitForNameInput();
         PO.setRoomInfo(testData);
-        expect(PO.getRoomSimpleInput().isSelected()).toBe(false);
         PO.sendForm();
         PO.waitTitleMessage();
         browser.driver.sleep(1000);
         var specMessage = PO.getContentMessage();
         var specId = PO.getRoomId();  
-        expect(isNaN(specId-1)).toBe(false);
+        expect(specId.then(function(rs){return isNaN(rs-1)})).toBe(false);
 
     });    
-
-
-
-
 
 });
