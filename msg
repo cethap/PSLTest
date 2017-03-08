@@ -12,3 +12,19 @@ Error:
 No se pudo guardar debido a:
 *El campo 'Apellidos' es requerido. 
 *El campo 'Documento de identidad' ya esta registrado. 
+
+----------------------------------------------------------------------
+
+.fa.fa-fw.fa-times -> x Salud prepagada
+.fa.fa-fw.fa-check -> Salud prepagada
+
+----------------------------------------------------------------------
+
+No se pudo guardar debido a:
+*El campo 'Número de habitación' es requerido. 
+
+
+No se pudo guardar debido a:
+*El campo 'Número de habitación' ya esta registrado. 
+
+----------------------------------------------------------------------

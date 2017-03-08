@@ -16,6 +16,6 @@ Run webdriver manager:
 
     webdriver-manager start
 
-Once initilized the webdriver manager you can run this sample:    
+Once initialized the webdriver manager you can run this sample:    
 
     npm test

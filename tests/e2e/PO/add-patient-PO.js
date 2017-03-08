@@ -1,20 +1,21 @@
 
-exports.addDoctorPO = function() {
+exports.addPatientPO = function() {
     
-  var nameInput = element(by.css('#name')),
-      lastNameInput = element(by.css('#last_name')),
-      telephoneInput = element(by.css('#telephone')),
-      identificationTypeInput = element(by.css('#identification_type')),
-      identificationInput = element(by.css('#identification')),
+  var nameInput = element(by.css('[name="name"]')),
+      lastNameInput = element(by.css('[name="last_name"]')),
+      telephoneInput = element(by.css('[name="telephone"]')),
+      identificationTypeInput = element(by.css('[name="identification_type"]')),
+      identificationInput = element(by.css('[name="identification"]')),
+      prepaidInput = element(by.css('[name="prepaid"]')),
       sendButton = element(by.css('[onclick="submitForm()"]')),
       titleMessageContainer = element(by.css('.panel .panel-title')),
       bodyMessageContainer = element(by.css('.panel .panel-body')),
-      doctorIdContainer = element(by.css('#doctorId'));
+      patientIdContainer = element(by.xpath('//*[@id="page-wrapper"]/div/div[3]/div/table/tbody/tr[5]/td[2]/span'));
       
 
   this.get = function() {
     browser.ignoreSynchronization = true;
-    browser.get('http://automatizacion.herokuapp.com/ctapasco/addDoctor');
+    browser.get('http://automatizacion.herokuapp.com/ctapasco/addPatient');
   };
 
   this.setPersonalInfo = function(info) {
@@ -23,10 +24,12 @@ exports.addDoctorPO = function() {
     telephoneInput.sendKeys(info.telephone);
     identificationTypeInput.sendKeys(info.identificationType);
     identificationInput.sendKeys(info.identification);
+    if(info.prepaid){
+      prepaidInput.click();
+    }
   };
 
   this.sendForm = function(){
-    browser.driver.sleep(500);
     sendButton.click();
   };
 
@@ -36,12 +39,18 @@ exports.addDoctorPO = function() {
     });
   };
 
+  this.waitForNameInput = function() {
+    browser.driver.wait(function () {
+        return nameInput.isDisplayed();
+    });
+  };
+
   this.getContentMessage = function() {
     return bodyMessageContainer.getText();
   };
 
-  this.getDoctorId = function() {
-    return doctorIdContainer.getText();
+  this.getPatientId = function() {
+    return patientIdContainer.getText();
   };  
 
 };
