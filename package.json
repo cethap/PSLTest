@@ -1,0 +1,21 @@
+{
+  "name": "psltest",
+  "version": "1.0.0",
+  "description": "a technical test for PSL",
+  "main": "app.js",
+  "scripts": {
+    "test": "protractor conf.js"
+  },
+  "keywords": [
+    "protractor",
+    "angular",
+    "javascript",
+    "automation",
+    "test"
+  ],
+  "author": "Cesar Augusto Tapasco Arias",
+  "license": "ISC",
+  "devDependencies": {
+    "protractor": "^5.1.1"
+  }
+}
