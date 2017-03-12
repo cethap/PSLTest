@@ -92,7 +92,7 @@ describe('Add patient', function() {
     var specId = PO.getPatientId();  
     expect(specMessage).toEqual("Datos guardados correctamente.");
     expect(specId).toEqual(testData.identification);
-    
+    browser.params.glob.patientID = testData.identification;
   });
 
   it('Add patient with id already saved', function() {

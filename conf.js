@@ -3,6 +3,13 @@
 
 exports.config = {
 
+    params: {
+        glob: {
+          doctorID:"", 
+          patientID:""
+        }
+    },
+
    onPrepare: function() {
       jasmine.getEnv().addReporter(
         new Jasmine2HtmlReporter({

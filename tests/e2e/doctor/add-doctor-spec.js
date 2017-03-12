@@ -84,6 +84,7 @@ describe('Add doctor', function() {
     var specId = PO.getDoctorId();  
     expect(specMessage).toEqual("Datos guardados correctamente.");
     expect(specId).toEqual(testData.identification);
+    browser.params.glob.doctorID = testData.identification;
     
   });
 

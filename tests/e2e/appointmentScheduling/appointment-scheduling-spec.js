@@ -54,6 +54,9 @@ describe('Appointment Scheduling', function() {
     var year = dateObj.getUTCFullYear();
     testData.time =  ((month<10)?"0"+month:month) + "/" + ((day<10)?"0"+day:day) + "/" + year;
 
+    testData.doctor = browser.params.glob.doctorID||"123...";
+    testData.patient = browser.params.glob.patientID||"123...";
+
     PO.waitForDatepickerInput();
     PO.setAppointmentSchedulingInfo(testData);
     PO.sendForm();
